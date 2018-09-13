@@ -20,17 +20,18 @@ def main():
             x = float(input("1st Side Length: "))
             y = float(input("2nd Side Length: "))
             print("The hypotenuse is: {:0.2f}".format(pyth(x, y)))
-        if formula == 2:
+        elif formula == 2:
             #Formula 2: Slope
             x1 = float(input("X value for the first coordinate: "))
             y1 = float(input("Y value for the first coordinate: "))
             x2 = float(input("X value for the second coordinate: "))
-            y1 = float(input("Y value for the second coordinate: "))
+            y2 = float(input("Y value for the second coordinate: "))
             print("The slope is: {:0.2f}".format(slope(x1, y1, x2, y2)))
         else:
             print("That is not an option.")
         
         again = input("Would you like to use another formula? (y/n) ")
+        print()
         if again == "n" or again == "N":
             print("Thank you for using Egor's Math Helper.")
             return False
