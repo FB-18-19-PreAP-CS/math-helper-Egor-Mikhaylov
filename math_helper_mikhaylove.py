@@ -10,6 +10,7 @@ def main():
     while True:
         print("1. Pythagorean Theorem")
         print("2. Slope")
+        print("3. Inverse Sine")
         formula = int(input("Please select the formula: "))
         if formula == 1:
             #Formula 1: Pythagorean Theorem
@@ -23,6 +24,11 @@ def main():
             x2 = float(input("X value for the second coordinate: "))
             y2 = float(input("Y value for the second coordinate: "))
             print("The slope is: {}".format(slope(x1, y1, x2, y2)))
+        elif formula == 3:
+            #Formula 3: Inverse Sine
+            opposite = float(input("Value for the opposite side: "))
+            hypotenuse = float(input("Value for the hypothenuse: "))
+            print(f"The angle is: {inverse_sine(opposite, hypotenuse)}")
         else:
             print("That is not an option.")
         
@@ -94,6 +100,9 @@ def slope(x1, y1, x2, y2):
         answer = "undefined"
         return answer
     
+def inverse_sine(opposite, hypotenuse):
+    answer = (math.asin(opposite/hypotenuse))*180/math.pi
+    return round(answer, 2)
     
 if __name__ == "__main__":
     import doctest
