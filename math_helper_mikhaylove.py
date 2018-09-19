@@ -172,7 +172,11 @@ def midpoint(x1, y1, x2, y2):
     y = (y1+y2)/2
     return (round(x, 2), round(y, 2))
 
-
+def distance(x1, y1, x2, y2):
+    if x1 == x2 == y1 == y2:
+        raise ValueError("The coordinates are in the same place.")
+    answer = math.sqrt((x2-x1)**2 + (y2 -y1)**2)
+    return round(answer, 2)
     
 if __name__ == "__main__":
     import doctest
