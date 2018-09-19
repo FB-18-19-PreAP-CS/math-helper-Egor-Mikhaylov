@@ -11,6 +11,7 @@ def main():
         print("1. Pythagorean Theorem")
         print("2. Slope")
         print("3. Inverse Sine")
+        print("4. Midpoint")
         formula = int(input("Please select the formula: "))
         if formula == 1:
             #Formula 1: Pythagorean Theorem
@@ -29,6 +30,13 @@ def main():
             opposite = float(input("Value for the opposite side: "))
             hypotenuse = float(input("Value for the hypothenuse: "))
             print(f"The angle is: {inverse_sine(opposite, hypotenuse)}")
+        elif formula == 4:
+            #Formula 4: Midpoint
+            x1 = float(input("X value for the first coordinate: "))
+            y1 = float(input("Y value for the first coordinate: "))
+            x2 = float(input("X value for the second coordinate: "))
+            y2 = float(input("Y value for the second coordinate: "))
+            print(f"The midpoint is: {midpoint(x1, y1, x2, y2)}.")
         else:
             print("That is not an option.")
         
@@ -110,16 +118,19 @@ def inverse_sine(opposite, hypotenuse):
         >>> inverse_sine(23, 199)
         6.64
         
+        The hypotenuse can't be less than the other side.
         >>> inverse_sine(5, 3)
         Traceback (most recent call last):
             ...
         ValueError: The hypotenuse can't ever be less than the opposite side.
         
+        None of the inputs should be 0
         >>> inverse_sine(0, 9)
         Traceback (most recent call last):
             ...
         ValueError: None of the sides should be 0.
         
+        None of the inputs can be negative.
         >>> inverse_sine(-5, -9)
         Traceback (most recent call last):
             ...
@@ -133,6 +144,34 @@ def inverse_sine(opposite, hypotenuse):
         raise ValueError("None of the sides should be 0.")
     answer = (math.asin(opposite/hypotenuse))*180/math.pi
     return round(answer, 2)
+
+def midpoint(x1, y1, x2, y2):
+    ''' Returns the coordinates of the midpoint of two given coordinates
+    
+    >>> midpoint(5, 8, 2, 9)
+    (3.5, 8.5)
+    
+    >>> midpoint(23, 8, 2, 59)
+    (12.5, 33.5)
+    
+    >>> midpoint(8, 1, 5, 3)
+    (6.5, 2.0)
+    
+    >>> midpoint(-5, -7, 6, -9)
+    (0.5, -8.0)
+
+    The coordinates shouldn't be the same.
+    >>> midpoint(6, 3, 6, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: The coordinates are in the same place.
+    '''
+    if x1 == x2 and y1 == y2:
+        raise ValueError("The coordinates are in the same place.")
+    x = (x1+x2)/2
+    y = (y1+y2)/2
+    return (round(x, 2), round(y, 2))
+
 
     
 if __name__ == "__main__":
