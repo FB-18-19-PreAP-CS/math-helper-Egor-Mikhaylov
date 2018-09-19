@@ -101,10 +101,41 @@ def slope(x1, y1, x2, y2):
         return answer
     
 def inverse_sine(opposite, hypotenuse):
+    ''' Returns the angle measurement when given two
+        inputs for the sides of a triangle.
+        
+        >>> inverse_sine(57, 100)
+        34.75
+        
+        >>> inverse_sine(23, 199)
+        6.64
+        
+        >>> inverse_sine(5, 3)
+        Traceback (most recent call last):
+            ...
+        ValueError: The hypotenuse can't ever be less than the opposite side.
+        
+        >>> inverse_sine(0, 9)
+        Traceback (most recent call last):
+            ...
+        ValueError: None of the sides should be 0.
+        
+        >>> inverse_sine(-5, -9)
+        Traceback (most recent call last):
+            ...
+        ValueError: There should be no negative sides.
+    '''
+    if hypotenuse < 0 or opposite < 0:
+        raise ValueError("There should be no negative sides.")
+    elif hypotenuse < opposite:
+        raise ValueError("The hypotenuse can't ever be less than the opposite side.")
+    elif hypotenuse == 0 or opposite == 0:
+        raise ValueError("None of the sides should be 0.")
     answer = (math.asin(opposite/hypotenuse))*180/math.pi
     return round(answer, 2)
+
     
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    #main()
+    main()
