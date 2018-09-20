@@ -8,51 +8,62 @@ def main():
     print()
     print("Here is a list of all of the five formulas which are availiable in Math Helper:")
     while True:
-        print("1. Pythagorean Theorem")
-        print("2. Slope")
-        print("3. Inverse Sine")
-        print("4. Midpoint")
-        print("5. Distance")
-        formula = int(input("Please select the formula: "))
-        if formula == 1:
-            #Formula 1: Pythagorean Theorem
-            x = float(input("1st Side Length: "))
-            y = float(input("2nd Side Length: "))
-            print("The hypotenuse is: {}".format(pyth(x, y)))
-        elif formula == 2:
-            #Formula 2: Slope
-            x1 = float(input("X value for the first coordinate: "))
-            y1 = float(input("Y value for the first coordinate: "))
-            x2 = float(input("X value for the second coordinate: "))
-            y2 = float(input("Y value for the second coordinate: "))
-            print("The slope is: {}".format(slope(x1, y1, x2, y2)))
-        elif formula == 3:
-            #Formula 3: Inverse Sine
-            opposite = float(input("Value for the opposite side: "))
-            hypotenuse = float(input("Value for the hypothenuse: "))
-            print(f"The angle is: {inverse_sine(opposite, hypotenuse)}")
-        elif formula == 4:
-            #Formula 4: Midpoint
-            x1 = float(input("X value for the first coordinate: "))
-            y1 = float(input("Y value for the first coordinate: "))
-            x2 = float(input("X value for the second coordinate: "))
-            y2 = float(input("Y value for the second coordinate: "))
-            print(f"The midpoint is: {midpoint(x1, y1, x2, y2)}.")
-        elif formula == 5:
-            #Formula 5: Distance
-            x1 = float(input("X value for the first coordinate: "))
-            y1 = float(input("Y value for the first coordinate: "))
-            x2 = float(input("X value for the second coordinate: "))
-            y2 = float(input("Y value for the second coordinate: "))
-            print(f"The distance is: {distance(x1, y1, x2, y2)}")
-        else:
-            print("That is not an option.")
+        try:
+            print("1. Pythagorean Theorem")
+            print("2. Slope")
+            print("3. Inverse Sine")
+            print("4. Midpoint")
+            print("5. Distance")
+            formula = int(input("Please select the formula: "))
+            if formula == 1:
+                #Formula 1: Pythagorean Theorem
+                x = float(input("1st Side Length: "))
+                y = float(input("2nd Side Length: "))
+                print("The hypotenuse is: {}".format(pyth(x, y)))
+            elif formula == 2:
+                #Formula 2: Slope
+                x1 = float(input("X value for the first coordinate: "))
+                y1 = float(input("Y value for the first coordinate: "))
+                x2 = float(input("X value for the second coordinate: "))
+                y2 = float(input("Y value for the second coordinate: "))
+                print("The slope is: {}".format(slope(x1, y1, x2, y2)))
+            elif formula == 3:
+                #Formula 3: Inverse Sine
+                opposite = float(input("Value for the opposite side: "))
+                hypotenuse = float(input("Value for the hypothenuse: "))
+                print(f"The angle is: {inverse_sine(opposite, hypotenuse)}")
+            elif formula == 4:
+                #Formula 4: Midpoint
+                x1 = float(input("X value for the first coordinate: "))
+                y1 = float(input("Y value for the first coordinate: "))
+                x2 = float(input("X value for the second coordinate: "))
+                y2 = float(input("Y value for the second coordinate: "))
+                print(f"The midpoint is: {midpoint(x1, y1, x2, y2)}.")
+            elif formula == 5:
+                #Formula 5: Distance
+                x1 = float(input("X value for the first coordinate: "))
+                y1 = float(input("Y value for the first coordinate: "))
+                x2 = float(input("X value for the second coordinate: "))
+                y2 = float(input("Y value for the second coordinate: "))
+                print(f"The distance is: {distance(x1, y1, x2, y2)}")
+            else:
+                print("That is not an option.")
+            
+            again = input("Would you like to use another formula? (y/n) ")
+            print()
+            if again == "n" or again == "N":
+                print("Thank you for using Egor's Math Helper.")
+                return False
+            
+        except ValueError as e:
+            if 'could not convert string to float:' in str(e) or 'invalid literal for int() with base 10' in str(e):
+                print('invalid input')
+            else:
+                print('Error: ' +str(e))
+    
+        except Exception:
+            print("Invalid input")
         
-        again = input("Would you like to use another formula? (y/n) ")
-        print()
-        if again == "n" or again == "N":
-            print("Thank you for using Egor's Math Helper.")
-            return False
             
             
 def pyth(x, y):
@@ -206,6 +217,4 @@ def distance(x1, y1, x2, y2):
     return round(answer, 2)
     
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
-    #main()
+    main()
