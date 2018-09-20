@@ -12,6 +12,7 @@ def main():
         print("2. Slope")
         print("3. Inverse Sine")
         print("4. Midpoint")
+        print("5. Distance")
         formula = int(input("Please select the formula: "))
         if formula == 1:
             #Formula 1: Pythagorean Theorem
@@ -37,6 +38,13 @@ def main():
             x2 = float(input("X value for the second coordinate: "))
             y2 = float(input("Y value for the second coordinate: "))
             print(f"The midpoint is: {midpoint(x1, y1, x2, y2)}.")
+        elif formula == 5:
+            #Formula 5: Distance
+            x1 = float(input("X value for the first coordinate: "))
+            y1 = float(input("Y value for the first coordinate: "))
+            x2 = float(input("X value for the second coordinate: "))
+            y2 = float(input("Y value for the second coordinate: "))
+            print(f"The distance is: {distance(x1, y1, x2, y2)}")
         else:
             print("That is not an option.")
         
@@ -173,7 +181,26 @@ def midpoint(x1, y1, x2, y2):
     return (round(x, 2), round(y, 2))
 
 def distance(x1, y1, x2, y2):
-    if x1 == x2 == y1 == y2:
+    ''' Returns the distance of two given coordinates
+
+    >>> distance(8, 9, 8, 10)
+    1.0
+    
+    >>> distance(-2, 3, 9, 4)
+    11.05
+    
+    >>> distance(-73, 3, -4, 91)
+    111.83
+    
+    >>> distance(0, -6, 0, -19)
+    13.0
+
+    >>> distance(5, 9, 5, 9)
+    Traceback (most recent call last):
+        ...
+    ValueError: The coordinates are in the same place.
+    '''
+    if x1 == x2 and y1 == y2:
         raise ValueError("The coordinates are in the same place.")
     answer = math.sqrt((x2-x1)**2 + (y2 -y1)**2)
     return round(answer, 2)
@@ -181,4 +208,4 @@ def distance(x1, y1, x2, y2):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    main()
+    #main()
