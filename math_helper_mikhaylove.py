@@ -6,7 +6,7 @@ def main():
     #Helper for Math Class (5 Formulas)
     print("Welcome to Egor's Math Helper")
     print()
-    print("Here is a list of all of the five formulas which are availiable in Math Helper:")
+    print("Here is a list of all of the five formulas which are available in Math Helper:")
     while True:
         try:
             print("1. Pythagorean Theorem")
