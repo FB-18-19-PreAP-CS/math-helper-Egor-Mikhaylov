@@ -14,6 +14,8 @@ def main():
             print("3. Inverse Sine")
             print("4. Midpoint")
             print("5. Distance")
+            print()
+            print("6. Quit program")
             formula = int(input("Please select the formula: "))
             if formula == 1:
                 #Formula 1: Pythagorean Theorem
@@ -46,6 +48,9 @@ def main():
                 x2 = float(input("X value for the second coordinate: "))
                 y2 = float(input("Y value for the second coordinate: "))
                 print(f"The distance is: {distance(x1, y1, x2, y2)}")
+            elif formula == 6:
+                print("Thank you for using Egor's Math Helper.")
+                return False
             else:
                 print("That is not an option.")
             
