@@ -6,7 +6,7 @@ def main():
     #Helper for Math Class (5 Formulas)
     print("Welcome to Egor's Math Helper")
     print()
-    print("Here is a list of all of the five formulas which are available in Math Helper:")
+    print("Here is a list of all of the six formulas which are available in Math Helper:")
     while True:
         try:
             print("1. Pythagorean Theorem")
@@ -14,8 +14,9 @@ def main():
             print("3. Inverse Sine")
             print("4. Midpoint")
             print("5. Distance")
+            print("6. Heron's Formula")
             print()
-            print("6. Quit program")
+            print("7. Quit program")
             formula = int(input("Please select the formula: "))
             if formula == 1:
                 #Formula 1: Pythagorean Theorem
@@ -49,6 +50,13 @@ def main():
                 y2 = float(input("Y value for the second coordinate: "))
                 print(f"The distance is: {distance(x1, y1, x2, y2)}")
             elif formula == 6:
+                #Formula 6: Area (Heron's Formula
+                s1 = float(input("What is the length of the first side? "))
+                s2 = float(input("What is the length of the second side? "))
+                s3 = float(input("What is the length of the third side? "))
+                print(f"The area is: {herons_formula(s1,s2,s3)}")
+                
+            elif formula == 7:
                 print("Thank you for using Egor's Math Helper.")
                 return False
             else:
@@ -66,8 +74,8 @@ def main():
             else:
                 print('Error: ' +str(e))
     
-        except Exception:
-            print("Invalid input")
+        except Exception as e:
+            print("Invalid input",e)
         
             
             
@@ -220,6 +228,47 @@ def distance(x1, y1, x2, y2):
         raise ValueError("The coordinates are in the same place.")
     answer = math.sqrt((x2-x1)**2 + (y2 -y1)**2)
     return round(answer, 2)
+
+def herons_formula(s1,s2,s3):
+    '''prints the area of the triangle, given three sides (s1,s2,s3)
+    >>> herons_formula(48,26,26)
+    240.0
+    
+    >>> herons_formula(6,8,10)
+    24.0
+    
+    >>> herons_formula(8,15,17)
+    60.0
+    
+    There are no negative triangle lengths
+    >>> herons_formula(5,-10,12)
+    Traceback (most recent call last):
+        ...
+    ValueError: sides must be positive
+    
+    Triangle Inequality Theorem: any two sides must be greater than the third side
+    >>> herons_formula(6,2,10)
+    Traceback (most recent call last):
+        ...
+    ValueError: side lengths must agree with Triangle Inequality Theorem
+    
+    >>> herons_formula(1,2,3)
+    Traceback (most recent call last):
+        ...
+    ValueError: side lengths must agree with Triangle Inequality Theorem
+        
+    '''
+    
+    if s1 <= 0 or s2 <=0 or s3 <= 0:
+        raise ValueError("sides must be positive")
+    
+    if s1+s2<=s3 or s2+s3<=s1 or s1+s3<=s2:
+        raise ValueError("side lengths must agree with Triangle Inequality Theorem")
+    
+    s = (s1+s2+s3)/2
+    area = math.sqrt(s*(s-s1)*(s-s2)*(s-s3))
+    return round(area,2)
+    
     
 if __name__ == "__main__":
     main()
